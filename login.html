@@ -217,31 +217,36 @@
 
 
             // Here you would typically send the login data to a server
-            fetch('/login', {
+            fetch('http://127.0.0.1:5000/login', {
                 method: 'POST',
                 headers: {
-                    'Content-Type': 'application/json'
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json'
                 },
                 body: JSON.stringify({
                     username: username,
                     password: password
-                })
+                }),
+                credentials: 'include'
             })
-            .then(response => response.json())
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.json();
+            })
             .then(data => {
                 if (data.success) {
-                    window.location.href = '/dashboard';
+                    window.location.href = 'http://127.0.0.1:5000/dashboard';
                 } else {
                     alert('Login failed: ' + data.message);
                 }
             })
             .catch(error => {
                 console.error('Error:', error);
-                alert('An error occurred during login');
+                alert('An error occurred during login. Please try again.');
             });
         });
-        });
-
         document.getElementById('newUserLogin').addEventListener('click', function(e) {
             e.preventDefault();
             alert('New User Login clicked. Implement registration logic here.');
