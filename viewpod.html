@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notes View</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+
+        body {
+            background: linear-gradient(45deg, #000000, #1a1a1a, #2c2c2c);
+            color: #ffffff;
+            min-height: 100vh;
+            padding: 2rem;
+        }
+
+        .notes-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+            padding: 1rem;
+        }
+
+        .note-block {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            padding: 1.5rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, background-color 0.3s ease;
+        }
+
+        .note-block:hover {
+            transform: translateY(-5px);
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+
+        .note-title {
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+            color: #fff;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            padding-bottom: 0.5rem;
+        }
+
+        .note-content {
+            color: #e0e0e0;
+            line-height: 1.5;
+        }
+
+        .note-footer {
+            margin-top: 1rem;
+            font-size: 0.8rem;
+            color: #999;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="notes-container">
+        <div class="note-block">
+            <h3 class="note-title">Meeting Notes</h3>
+            <p class="note-content">Discussed project timeline and deliverables. Need to follow up with team about resources.</p>
+            <div class="note-footer">
+                <span>Created: 2023-10-15</span>
+                <span>Last edited: 2 hours ago</span>
+            </div>
+        </div>
+
+        <div class="note-block">
+            <h3 class="note-title">Ideas</h3>
+            <p class="note-content">New feature implementation for user dashboard. Include analytics and reporting.</p>
+            <div class="note-footer">
+                <span>Created: 2023-10-14</span>
+                <span>Last edited: 1 day ago</span>
+            </div>
+        </div>
+
+        <div class="note-block">
+            <h3 class="note-title">To-Do List</h3>
+            <p class="note-content">1. Review pull requests<br>2. Update documentation<br>3. Schedule team meeting</p>
+            <div class="note-footer">
+                <span>Created: 2023-10-13</span>
+                <span>Last edited: 3 days ago</span>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
