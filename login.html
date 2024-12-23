@@ -214,6 +214,32 @@
             // Here you would typically send the login data to a server
             console.log('Login attempt:', { username, password });
             alert('Login attempt recorded. Check console for details.');
+
+
+            // Here you would typically send the login data to a server
+            fetch('/login', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    username: username,
+                    password: password
+                })
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    window.location.href = '/dashboard';
+                } else {
+                    alert('Login failed: ' + data.message);
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('An error occurred during login');
+            });
+        });
         });
 
         document.getElementById('newUserLogin').addEventListener('click', function(e) {
