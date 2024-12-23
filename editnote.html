@@ -145,15 +145,16 @@
                     </div>
                 </div>
                 
-                
-                <div class="button-container">
-                    
-                    <button class="btn" id="new-note-btn">New Note</button>
-                </div>
                 <br>
                 <br>
 
             </div>
+            <div class="button-container">
+                    
+                
+                <!-- <button class="btn" id="delete-note-btn">Delete Note</button> -->
+            </div>
+            <button class="btn" id="new-note-btn">New Note</button>
             <button class="btn" id="save-btn" type="submit">Generate Notes</button>
         </form>
     </div>
@@ -191,16 +192,20 @@
     document.addEventListener('DOMContentLoaded', () => {
         const newNoteBtn = document.getElementById('new-note-btn');
         const saveBtn = document.getElementById('save-btn');
+        // const deleteNoteBtn = document.getElementById('delete-note-btn');
         let noteCounter = 1;
+        
 
         newNoteBtn.addEventListener('click', (e) => {
             e.preventDefault();
+
             
             // Get the original form
             const originalForm = document.getElementById('demo-form');
             
             // Create a clone of the form
             const newForm = originalForm.cloneNode(true);
+            // newForm.style.display = 'flex';
             
             // Set unique ID for the new form
             newForm.id = `demo-form-${noteCounter}`;
@@ -211,7 +216,7 @@
             });
             
             // Insert the new form before the save button
-            saveBtn.parentNode.insertBefore(newForm, saveBtn);
+            saveBtn.parentNode.insertBefore(newForm, newNoteBtn);
             
             noteCounter++;
         });
