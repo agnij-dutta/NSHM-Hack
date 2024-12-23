@@ -1,0 +1,229 @@
+<style>
+/* Update title styling */
+.header {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 1rem 2rem;
+    background: linear-gradient(to right, #000000, #1a1a1a);
+}
+
+.header h1 {
+    color: #fff;
+    font-size: 2rem;
+    margin: 0;
+    margin-right: auto;
+}
+
+/* Update POD list to grid layout */
+.pod-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 1.5rem;
+    padding: 1.5rem;
+    list-style: none;
+}
+
+.pod-item {
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    padding: 1.5rem;
+    min-height: 150px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: #fff;
+    font-size: 1.1rem;
+    transition: transform 0.3s ease, background-color 0.3s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.pod-item:hover {
+    transform: translateY(-5px);
+    background-color: rgba(255, 255, 255, 0.2);
+}
+</style>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+    // Add title to header
+    const header = document.querySelector('.header');
+    const title = document.createElement('h1');
+    title.textContent = 'Dashboard';
+    header.insertBefore(title, header.firstChild);
+});
+</script>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>POD Dashboard</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="header">
+        <button id="profileBtn">My Profile</button>
+        <button id="logoutBtn">Log Out</button>
+    </div>
+    
+    <div class="tabs">
+        <button class="tab-button active" data-tab="subscribed">Subscribed PODs</button>
+        <button class="tab-button" data-tab="my">My PODs</button>
+    </div>
+    
+    <div class="tab-content active" id="subscribed-pods">
+        <ul class="pod-list">
+            <li class="pod-item">Subscribed POD 1</li>
+            <li class="pod-item">Subscribed POD 2</li>
+            <li class="pod-item">Subscribed POD 3</li>
+        </ul>
+    </div>
+    
+    <div class="tab-content" id="my-pods">
+        <ul class="pod-list">
+            <li class="pod-item">My POD 1</li>
+            <li class="pod-item">My POD 2</li>
+            <li class="pod-item">My POD 3</li>
+        </ul>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
+
+<!-- styles.css -->
+<style>
+/* Reset default styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: linear-gradient(135deg, #1a1a1a, #333333);
+    color: white;
+    font-family: 'Arial', sans-serif;
+    min-height: 100vh;
+}
+
+.header {
+    display: flex;
+    justify-content: flex-end;
+    padding: 20px;
+    background-color: rgba(0, 0, 0, 0.3);
+}
+
+.header button {
+    margin-left: 15px;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    background-color: #4CAF50;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.header button:hover {
+    background-color: #45a049;
+}
+
+.tabs {
+    display: flex;
+    justify-content: center;
+    margin: 30px 0;
+}
+
+.tab-button {
+    padding: 15px 30px;
+    margin: 0 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: rgba(255, 255, 255, 0.1);
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.tab-button:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+.tab-button.active {
+    background-color: rgba(255, 255, 255, 0.3);
+}
+
+.tab-content {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    display: none;
+}
+
+.tab-content.active {
+    display: block;
+}
+
+.pod-list {
+    list-style: none;
+}
+
+.pod-item {
+    padding: 15px;
+    margin-bottom: 15px;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 5px;
+    transition: transform 0.3s ease;
+}
+
+.pod-item:hover {
+    transform: translateX(10px);
+    background-color: rgba(255, 255, 255, 0.2);
+}
+</style>
+
+<!-- script.js -->
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+    // Tab switching functionality
+    const tabButtons = document.querySelectorAll('.tab-button');
+    const tabContents = document.querySelectorAll('.tab-content');
+
+    tabButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            // Remove active class from all buttons and contents
+            tabButtons.forEach(btn => btn.classList.remove('active'));
+            tabContents.forEach(content => content.classList.remove('active'));
+
+            // Add active class to clicked button and corresponding content
+            button.classList.add('active');
+            const tabId = `${button.dataset.tab}-pods`;
+            document.getElementById(tabId).classList.add('active');
+        });
+    });
+
+    // Profile button functionality
+    document.getElementById('profileBtn').addEventListener('click', () => {
+        // Add profile navigation logic here
+        console.log('Navigate to profile page');
+    });
+
+    // Logout button functionality
+    document.getElementById('logoutBtn').addEventListener('click', () => {
+        // Add logout logic here
+        console.log('Logging out...');
+    });
+
+    // Add hover effect to POD items
+    const podItems = document.querySelectorAll('.pod-item');
+    podItems.forEach(item => {
+        item.addEventListener('mouseenter', () => {
+            item.style.cursor = 'pointer';
+        });
+    });
+});
+</script>
