@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Note</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+
+        body {
+            display: flex;
+            min-height: 100vh;
+            background: linear-gradient(45deg, #000000, #1a1a1a, #2c2c2c);
+            color: #ffffff;
+        }
+
+        .left-panel {
+            width: 30%;
+            padding: 2rem;
+            border-right: 1px solid rgba(255, 255, 255, 0.2);
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .right-panel {
+            width: 70%;
+            padding: 2rem;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .input-group {
+            position: relative;
+            margin-bottom: 30px;
+        }
+
+        .input-group input, .input-group textarea {
+            width: 100%;
+            padding: 10px;
+            font-size: 16px;
+            color: #ffffff;
+            border: none;
+            border-bottom: 1px solid #ffffff;
+            outline: none;
+            background: transparent;
+            transition: 0.5s;
+        }
+
+        .input-group label {
+            position: absolute;
+            top: -20px;
+            left: 0;
+            color: #ffffff;
+            font-size: 14px;
+        }
+
+        .btn {
+            position: relative;
+            display: inline-block;
+            padding: 10px 20px;
+            color: #ffffff;
+            font-size: 16px;
+            text-decoration: none;
+            text-transform: uppercase;
+            overflow: hidden;
+            transition: 0.5s;
+            letter-spacing: 4px;
+            background: transparent;
+            border: 1px solid #ffffff;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            background: #ffffff;
+            color: #000;
+            border-radius: 5px;
+            box-shadow: 0 0 5px #ffffff,
+                        0 0 25px #ffffff,
+                        0 0 50px #ffffff,
+                        0 0 100px #ffffff;
+        }
+
+        .button-container {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+
+        .form-section {
+            margin-bottom: 20px;
+        }
+
+        .file-upload {
+            border: 1px dashed #ffffff;
+            padding: 20px;
+            text-align: center;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .file-upload:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .file-upload input[type="file"] {
+            display: none;
+        }
+
+        .file-upload label {
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="left-panel">
+        <div class="input-group">
+            <label for="pod-name">POD Name</label>
+            <input type="text" id="pod-name" required>
+        </div>
+    </div>
+    
+    <div class="right-panel">
+        <form>
+            <div class="form-section">
+                <div class="input-group">
+                    <label for="video-link">Video Link</label>
+                    <input type="url" id="video-link" placeholder="Enter video URL" required>
+                </div>
+            </div>
+            
+            <div class="form-section">
+                <div class="file-upload">
+                    <label for="file-input">
+                        <i class="fas fa-cloud-upload-alt"></i>
+                        <p>Drag and drop files here or click to upload</p>
+                    </label>
+                    <input type="file" id="file-input" multiple>
+                </div>
+            </div>
+            
+            <div class="form-section">
+                <div class="input-group">
+                    <label for="note-content">Note Content</label>
+                    <textarea id="note-content" rows="15" required></textarea>
+                </div>
+            </div>
+            
+            <div class="button-container">
+                <button class="btn" id="save-btn">Save</button>
+                <button class="btn" id="new-note-btn">New Note</button>
+            </div>
+        </form>
+    </div>
+</body>
+</html>
