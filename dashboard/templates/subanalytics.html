@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Analytics</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: black; /* Dark gray background */
+            color: #d4af37; /* Golden text color */
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .chart-container {
+            width: 90%; /* Width spans 90% of the page */
+            max-width: 1200px; /* Maximum width for larger screens */
+            margin: 0 auto; /* Center the container */
+        }
+        canvas {
+            background-color: #3a3a3a; /* Gray background for canvas */
+            border-radius: 8px;
+            padding: 10px;
+        }
+        .podbtn {
+    position: relative;
+    display: inline-block;
+    padding: 10px 20px;
+    color: #ffffff;
+    font-size: 16px;
+    text-decoration: none;
+    text-transform: uppercase;
+    overflow: hidden;
+    transition: 0.5s;
+    letter-spacing: 4px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    }
+
+    .podbtn:hover {
+        background: #ffffff;
+        color: #000;
+        border-radius: 5px;
+        box-shadow: 0 0 5px #ffffff,
+                    0 0 25px #ffffff,
+                    0 0 50px #ffffff,
+                    0 0 100px #ffffff;
+    }
+    .header {
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        padding: 1rem 2rem;
+        background: linear-gradient(to right, #000000, #1a1a1a);
+    }
+    
+    .header h1 {
+        color: #fff;
+        font-size: 2rem;
+        margin: 0;
+        margin-right: auto;
+    }
+    .header {
+        display: flex;
+        justify-content: flex-end;
+        padding: 20px;
+        background-color: rgba(0, 0, 0, 0.3);
+    }
+    
+    .header button {
+        margin-left: 15px;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        background-color: #4CAF50;
+        color: white;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+    
+    .header button:hover {
+        background-color: #45a049;
+    }
+
+    hr {
+            border: none;
+            border-top: 1px solid white; /* Fine white line */
+            margin: 30px 0; /* Spacing above and below the line */
+        }
+    
+    .chart-container1 {
+        width: 600px; /* Fixed width */
+        margin-right: 50px;
+        height: 300px; /* Fixed height */
+        margin: 10px auto; /* Center the container */
+        /* background-color: black; */
+        /* border: 1px solid white;  */
+        border-radius: 8px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+    }
+
+    .subjectchartcanvas{
+        margin: 5px;
+        width: 100%;
+        min-height: 250px;
+    }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <a class='podbtn' href="/dashboard">DASHBOARD</a>
+        <a class='podbtn' href="/profile">PROFILE</a>
+        
+    </div>
+    <h1>Subject Development</h1>
+    <div class="chart-container">
+        <canvas id="lineChart"></canvas>
+    </div>
+
+    <hr>
+
+    <script>
+        // Data passed from Flask
+        const values = {{ subdata.subname | tojson }};
+
+        // Generate labels for the x-axis
+        const labels = values.map((_, index) => `Test ${index + 1}`);
+
+        // Chart configuration
+        const config = {
+            type: 'line',
+            data: {
+                labels: labels,
+                datasets: [{
+                    label: '',
+                    data: values,
+                    borderColor: '#d4af37',
+                    backgroundColor: 'rgba(212, 175, 55, 0.2)',
+                    borderWidth: 2,
+                    pointRadius: 4,
+                    pointBackgroundColor: '#d4af37',
+                }],
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false, /* Allow the chart to adjust height */
+                plugins: {
+                    legend: {
+                        display: true,
+                        labels: {
+                            color: '#d4af37', // Golden legend text
+                        }
+                    },
+                },
+                scales: {
+                    x: {
+                        // title: {
+                        //     display: true,
+                        //     text: 'Test',
+                        //     color: '#d4af37'
+                        // },
+                        grid: {
+                            color: '#4a4a4a' // Subtle grid line color
+                        },
+                        ticks: {
+                            color: '#d4af37' // Golden tick labels
+                        }
+                    },
+                    y: {
+                        title: {
+                            display: true,
+                            text: 'TEST MARKS',
+                            color: '#d4af37'
+                        },
+                        grid: {
+                            color: '#4a4a4a' // Subtle grid line color
+                        },
+                        ticks: {
+                            color: '#d4af37' // Golden tick labels
+                        }
+                    }
+                }
+            }
+        };
+
+        // Render chart
+        const ctx = document.getElementById('lineChart').getContext('2d');
+        new Chart(ctx, config);
+
+        
+    </script>
+</body>
+</html>
