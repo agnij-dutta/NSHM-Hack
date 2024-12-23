@@ -147,11 +147,77 @@
                 
                 
                 <div class="button-container">
-                    <button class="btn" id="save-btn">Create Notes</button>
+                    
                     <button class="btn" id="new-note-btn">New Note</button>
                 </div>
+                <br>
+                <br>
+
             </div>
+            <button class="btn" id="save-btn" type="submit">Generate Notes</button>
         </form>
     </div>
+<!-- <script>
+    document.addEventListener('DOMContentLoaded', () => {
+        let noteCounter = 1;
+        const newNoteBtn = document.getElementById('new-note-btn');
+        
+        newNoteBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            
+            // Get the original form
+            const originalForm = document.getElementById('demo-form');
+            
+            // Create a clone of the form
+            const newForm = originalForm.cloneNode(true);
+            
+            // Set unique ID for the new form
+            newForm.id = `demo-form-${noteCounter}`;
+            
+            // Clear any input values in the clone
+            newForm.querySelectorAll('input').forEach(input => {
+                input.value = '';
+            });
+            
+            // Insert the new form after the last form
+            originalForm.parentNode.appendChild(newForm);
+            
+            noteCounter++;
+        });
+    });
+</script> -->
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const newNoteBtn = document.getElementById('new-note-btn');
+        const saveBtn = document.getElementById('save-btn');
+        let noteCounter = 1;
+
+        newNoteBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            
+            // Get the original form
+            const originalForm = document.getElementById('demo-form');
+            
+            // Create a clone of the form
+            const newForm = originalForm.cloneNode(true);
+            
+            // Set unique ID for the new form
+            newForm.id = `demo-form-${noteCounter}`;
+            
+            // Clear any input values in the clone
+            newForm.querySelectorAll('input, textarea').forEach(input => {
+                input.value = '';
+            });
+            
+            // Insert the new form before the save button
+            saveBtn.parentNode.insertBefore(newForm, saveBtn);
+            
+            noteCounter++;
+        });
+    });
+</script>
+
+
 </body>
 </html>
